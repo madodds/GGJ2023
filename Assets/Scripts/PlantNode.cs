@@ -10,6 +10,7 @@ public class PlantNode : MonoBehaviour
     private Globals.player player;
     private int coordinatex;
     private int coordinatey;
+    private bool checkedState = false;
 
     public void SetState(Globals.states state, Globals.player player){
         this.state = state;
@@ -17,8 +18,12 @@ public class PlantNode : MonoBehaviour
     }
 
     public void SetCoordinates(int x, int y){
-        coordinatex = x;
-        coordinatey = y;
+        this.coordinatex = x;
+        this.coordinatey = y;
+    }
+    public void SetCheckedState(bool check)
+    {
+        this.checkedState = check;
     }
 
     // Start is called before the first frame update
@@ -32,8 +37,12 @@ public class PlantNode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        this.SetCheckedState(false);
     }
+
+    public Globals.player GetPlayer() { return player; }
+    public Globals.states GetStates() { return state; }
+    public bool GetCheckedState() { return checkedState; }
     public List<int> GetCoordinates(){
         List<int> coordinates = new List<int>
         {

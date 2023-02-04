@@ -4,27 +4,40 @@ using UnityEngine;
 
 public class Selectable : MonoBehaviour
 {
-    public Color HighlightColor = Color.white;
-    Color DefaultColor;
+    public Color highlightColor = Color.white;
+    Color defaultColor;
 
-    MeshRenderer Renderer;
+    MeshRenderer renderer;
+
+    PlantNode plantNode;
+
+    void Awake()
+    {
+        plantNode = GetComponent<PlantNode>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        Renderer = GetComponent<MeshRenderer>();
-        DefaultColor = Renderer.material.color;
+        renderer = GetComponent<MeshRenderer>();
+        defaultColor = renderer.material.color;
     }
 
     void OnMouseOver()
     {
-        Renderer.material.color = HighlightColor;
-        Debug.Log("Mouse is over GameObject.");
+        renderer.material.color = highlightColor;
     }
 
     void OnMouseExit()
     {
-        Renderer.material.color = DefaultColor;
-        Debug.Log("Mouse left GameObject.");
+        renderer.material.color = defaultColor;
+    }
+
+    void OnMouseDown()
+    {
+        Debug.Log("You clicked", this);
+        if(plantNode){
+            Debug.Log("Has PlantNode");
+        }
     }
 }
