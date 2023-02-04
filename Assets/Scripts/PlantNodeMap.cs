@@ -9,39 +9,44 @@ public class PlantNodeMap : MonoBehaviour
 {
     public List<List<PlantNode>> nodelist;
     private float starttime;
-    public GameObject hex;
+    /*    public GameObject hex;
+        public PlantNode plantNode;*/
 
     void InitializeNodes()
     {
-        nodelist= new List<List<PlantNode>>();
-        for(int x=0; x < 10; x++){
+        nodelist = new List<List<PlantNode>>();
+        for (int x = -5; x < 5; x++)
+        {
             List<PlantNode> templist = new List<PlantNode>();
-            if(x==0){
-                PlantNode plantnode = new PlantNode();
-                plantnode.SetCoordinates(x,2);
-                plantnode.SetState(Globals.states.tree, Globals.player.player1);
-                GameObject newhex = Instantiate(hex, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
-                plantnode.Initialize(newhex);
-                templist.Add(plantnode);
-            }else if(x==9){
-                for(int y=1 ; y<5 ; y++){
-                    PlantNode plantnode = new PlantNode();
-                    plantnode.SetCoordinates(x,y);
-                    if(y==2){
-                        plantnode.SetState(Globals.states.tree, Globals.player.player2);
+            var plantNode = Resources.Load<PlantNode>("Prefab/PlantNode");
+            if (x == -5)
+            {
+                PlantNode newPlantNode = Instantiate(plantNode);
+                newPlantNode.SetCoordinates(x, 0);
+                newPlantNode.SetState(Globals.states.tree, Globals.player.player1);
+                templist.Add(newPlantNode);
+            }
+            else if (x == 4)
+            {
+                for (int y = -1; y < 3; y++)
+                {
+                    PlantNode newPlantNode = Instantiate(plantNode);
+                    newPlantNode.SetCoordinates(x, y);
+                    if (y == 0)
+                    {
+                        newPlantNode.SetState(Globals.states.tree, Globals.player.player2);
                     }
-                    GameObject newhex = Instantiate(hex, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
-                    plantnode.Initialize(newhex);
-                    templist.Add(plantnode);
-                } 
-            }else{
-                for(int y=0; y < 10; y++){
-                    PlantNode plantnode = new PlantNode();
-                    plantnode.SetCoordinates(x,y);
-                    plantnode.SetState(Globals.states.empty, Globals.player.none);
-                    GameObject newhex = Instantiate(hex, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
-                    plantnode.Initialize(newhex);
-                    templist.Add(plantnode);
+                    templist.Add(newPlantNode);
+                }
+            }
+            else
+            {
+                for (int y = -2; y < 3; y++)
+                {
+                    PlantNode newPlantNode = Instantiate(plantNode);
+                    newPlantNode.SetCoordinates(x, y);
+                    newPlantNode.SetState(Globals.states.empty, Globals.player.none);
+                    templist.Add(newPlantNode);
                 }
             }
 
