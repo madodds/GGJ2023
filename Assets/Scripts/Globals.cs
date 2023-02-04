@@ -39,6 +39,13 @@ public class Globals : MonoBehaviour
         carrots,
     }
 
+    public enum PlayerCharacter
+    {
+        Dryad,
+        PumpkinKing,
+        Necromancer
+    }
+
     public static Dictionary<PlantResources, int> ResourceCosts = new Dictionary<PlantResources, int>
     {
         {PlantResources.grass, 1 },
