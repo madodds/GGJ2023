@@ -30,10 +30,13 @@ public class PlantNode : MonoBehaviour
     //return OffsetCoord(col, row)
         this.hex = hex;
         Renderer renderer = hex.GetComponent<Renderer>();
-        float col = coordinatex - (coordinatey - (coordinatex & 1)) / 2;
-        float row = coordinatey;
         Vector3 size = renderer.bounds.size;
-        Vector3 position = new Vector3((float)(size.x*col - 5), (float)(size.y*row-2.5), (float)0.0);
+        float x = size.x*coordinatex;
+        float y = size.y*coordinatey;
+        float col = x + (y - (coordinatex & 1)) / 2;
+        float row = y;
+        
+        Vector3 position = new Vector3((float)(col), (float)(row), (float)0.0);
         
         Quaternion rotate = new Quaternion(0, 0, 0, 0);
         renderer.transform.position = (position);
@@ -41,8 +44,6 @@ public class PlantNode : MonoBehaviour
         Vector3 rot = renderer.transform.rotation.eulerAngles;
         rot = new Vector3(rot.x, rot.y + 180, rot.z);
         renderer.transform.rotation = Quaternion.Euler(rot);
-        /*hex.AddComponent<TextMesh>();
-        hex.GetComponent<TextMesh>().text = $"{position.x}, {position.y}";*/
 
     }
     public void SetCoordinates(int x, int y){
