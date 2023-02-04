@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Selectable : MonoBehaviour
 {
-    public Color highlightColor = Color.white;
+    public Color validHighlightColor = Color.green;
+    public Color invalidHighlightColor = Color.red;
     Color defaultColor;
 
     MeshRenderer renderer;
@@ -25,7 +26,11 @@ public class Selectable : MonoBehaviour
 
     void OnMouseOver()
     {
-        renderer.material.color = highlightColor;
+        if(IsValid()){
+            renderer.material.color = validHighlightColor;
+        } else {
+            renderer.material.color = invalidHighlightColor;
+        }
     }
 
     void OnMouseExit()
@@ -39,5 +44,9 @@ public class Selectable : MonoBehaviour
         if(plantNode){
             Debug.Log("Has PlantNode");
         }
+    }
+
+    bool IsValid(){
+        return true;
     }
 }
