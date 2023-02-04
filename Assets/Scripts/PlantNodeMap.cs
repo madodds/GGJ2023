@@ -9,16 +9,19 @@ public class PlantNodeMap : MonoBehaviour
 {
     public List<List<PlantNode>> nodelist;
     private float starttime;
+    public GameObject hex;
 
     void InitializeNodes()
     {
-
+        nodelist= new List<List<PlantNode>>();
         for(int x=0; x < 10; x++){
             List<PlantNode> templist = new List<PlantNode>();
             if(x==0){
                 PlantNode plantnode = new PlantNode();
                 plantnode.SetCoordinates(x,2);
                 plantnode.SetState(Globals.states.tree, Globals.player.player1);
+                GameObject newhex = Instantiate(hex, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+                plantnode.Initialize(newhex);
                 templist.Add(plantnode);
             }else if(x==9){
                 for(int y=1 ; y<5 ; y++){
@@ -27,6 +30,8 @@ public class PlantNodeMap : MonoBehaviour
                     if(y==2){
                         plantnode.SetState(Globals.states.tree, Globals.player.player2);
                     }
+                    GameObject newhex = Instantiate(hex, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+                    plantnode.Initialize(newhex);
                     templist.Add(plantnode);
                 } 
             }else{
@@ -34,32 +39,20 @@ public class PlantNodeMap : MonoBehaviour
                     PlantNode plantnode = new PlantNode();
                     plantnode.SetCoordinates(x,y);
                     plantnode.SetState(Globals.states.empty, Globals.player.none);
+                    GameObject newhex = Instantiate(hex, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+                    plantnode.Initialize(newhex);
                     templist.Add(plantnode);
                 }
             }
 
-            this.nodelist.Add(templist);
+            nodelist.Add(templist);
         }
     }
-        
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        this.starttime = Time.time;
-        InitializeNodes();
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        CheckNeighbors();
-    }
 
     void CheckNeighbors()
     {
-        foreach(List<PlantNode> templist in this.nodelist)
+        foreach (List<PlantNode> templist in nodelist)
         {
             foreach (PlantNode node in templist)
             {
@@ -85,15 +78,33 @@ public class PlantNodeMap : MonoBehaviour
                         neighborNode.SetCheckedState(true);
                         continue;
                     }
-                    if(neighborNodePlayer == nodePlayer)
+                    if (neighborNodePlayer == nodePlayer)
                     {
                         continue;
                     }
-                    else{
+                    else
+                    {
                         // Deal or take damage
                     }
                 }
             }
         }
     }
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        this.starttime = Time.time;
+        InitializeNodes();
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //CheckNeighbors();
+    }
+
+    
 }

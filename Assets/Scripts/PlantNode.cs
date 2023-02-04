@@ -1,22 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlantNode : MonoBehaviour
 {
-    public Globals.states state;
+    private Globals.states state;
     private int timer;
     private int[] connected;
     private Globals.player player;
     private int coordinatex;
     private int coordinatey;
     private bool checkedState = false;
+    public GameObject hex;
 
     public void SetState(Globals.states state, Globals.player player){
         this.state = state;
         this.player = player;
     }
 
+    public void Initialize(GameObject hex)
+    {
+
+    //    function axial_to_oddr(hex):
+    //var col = hex.q + (hex.r - (hex.r & 1)) / 2
+    //var row = hex.r
+    //return OffsetCoord(col, row)
+        this.hex = hex;
+        Renderer renderer = hex.GetComponent<Renderer>();
+        float col = coordinatex - (coordinatey - (coordinatex & 1)) / 2;
+        float row = coordinatey;
+        Vector3 size = renderer.bounds.size;
+        Vector3 position = new Vector3((float)(size.x*col - 5), (float)(size.y*row-2.5), (float)0.0);
+        
+        Quaternion rotate = new Quaternion(0, 0, 0, 0);
+        renderer.transform.position = (position);
+        renderer.transform.rotation = rotate;
+        Vector3 rot = renderer.transform.rotation.eulerAngles;
+        rot = new Vector3(rot.x, rot.y + 180, rot.z);
+        renderer.transform.rotation = Quaternion.Euler(rot);
+        /*hex.AddComponent<TextMesh>();
+        hex.GetComponent<TextMesh>().text = $"{position.x}, {position.y}";*/
+
+    }
     public void SetCoordinates(int x, int y){
         this.coordinatex = x;
         this.coordinatey = y;
@@ -31,7 +59,8 @@ public class PlantNode : MonoBehaviour
     {
         state = Globals.states.empty;
         player = Globals.player.none;
-        
+
+
     }
 
     // Update is called once per frame
