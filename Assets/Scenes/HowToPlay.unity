@@ -1077,40 +1077,39 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Leverage agile frameworks to provide a robust synopsis for high level
-    overviews. Iterative approaches to corporate strategy foster collaborative thinking
-    to further the overall value proposition. Organically grow the holistic world
-    view of disruptive innovation via workplace diversity and empowerment.
-
-
-
-    Bring
-    to the table win-win survival strategies to ensure proactive domination. At the
-    end of the day, going forward, a new normal that has evolved from generation
-    X is on the runway heading towards a streamlined cloud solution. User generated
-    content in real-time will have multiple touchpoints for offshoring.
-
-
-
-    Capitalize
-    on low hanging fruit to identify a ballpark value added activity to beta test.
-    Override the digital divide with additional clickthroughs from DevOps. Nanotechnology
-    immersion along the information highway will close the loop on focusing solely
-    on the bottom line.
-
-
-
-    Podcasting operational change management inside of
-    workflows to establish a framework. Taking seamless key performance indicators
-    offline to maximise the long tail. Keeping your eye on the ball while performing
-    a deep dive on the start-up mentality to derive convergence on cross-platform
-    integration.
-
-
-
-    Collaboratively administrate empowered markets via plug-and-play
-    networks. Dynamically procrastinate B2C users after installed base benefits.
-    Dramatically visualize customer directed convergence without revolutionary ROI.'
+  m_text: "GRASS TO GRASS RULES\r\nRULES:\r\nEach player starts with a tree on their
+    side of the board. Trees have 3 HP.  First player to destroy the enemy's tree
+    wins.\r\nEach tree is surrounded by allied Grass (3 hex tiles for player 1, 5
+    hex tiles for player 2)\r\nEMPTY tiles can only have Grass/Weeds grown on them.\r\nOther
+    plants may only be grown on allied Grass/Weed hex tiles. \r\n-    You must expand
+    before you can grow!\r\nWhen any plant dies, it turns into Grass (owned by the
+    same player)\r\n-    You keep the terrain you claimed until your opponent grows
+    a plant on top of it.\r\n\r\nTURN STRUCTURE:\r\n- Gain Resources (2 automatic,
+    +1 per flower, maximum resources: 6)\r\n- Allied plants and rabbits act (simultaneously)\r\n-
+    Spend resources to buy plants (plants are played immediately when bought)\r\n-
+    END turn (You keep any unspent Resources)\r\n\r\nUNIT\t\tCOST\tHEALTH\tEFFECT\r\n-----------------------------------------------------------------------------------------------------------------\r\nTree\t\tN/A\t3\tYou
+    must keep this alive to win!\r\n\t\t\t\tTrees do not take damage from Tumbleweeds!\r\n-----------------------------------------------------------------------------------------------------------------\r\nGrass\t\t1\t0\tMay
+    be placed on any adjacent empty tile or enemy grass.\r\n\t\t\t\tGrass does not
+    die and is not attacked by enemy plants/Rabbits.\r\n-----------------------------------------------------------------------------------------------------------------\r\nWeeds\t\t2\t3\tMay
+    be placed on any adjacent empty tile or enemy grass.\r\n\t\t\t\tWhen Weeds die,
+    they will regrow at full Heath at the start of your next turn!\r\n-----------------------------------------------------------------------------------------------------------------\r\nTumbleweed\t2\t1\tAt
+    the start of your turn, grows to maturity.\r\n\t\t\t\tIf the Tumbleweed is already
+    mature, it dies and deals 2 damage to ALL plants and Rabbits in front of its
+    row.\r\n\t\t\t\tTumbleweeds do not harm Trees!\r\n-----------------------------------------------------------------------------------------------------------------\r\nVenus
+    Fly Trap\t2\t2\tAt the start of your turn, deal 1 damage to every adjacent enemy
+    plant/Rabbit.\r\n-----------------------------------------------------------------------------------------------------------------\r\nFlowers\t\t3\t1\tGain
+    1 additional Resources at the start of your turn.\r\n\t\t\t\tMaximum of 2 Flowers
+    may be in play per player.\r\n-----------------------------------------------------------------------------------------------------------------\r\nCarrots\t\t4\t3\tSpawns
+    a Rabbit at the start of your turn.\r\n\t\t\t\tOnly 1 Rabbit may be created by
+    each Carrots hex.\r\n\t\t\t\tWhen a Rabbit dies, its Carrots hex will spawn a
+    new one next turn.\r\n-----------------------------------------------------------------------------------------------------------------\r\nRabbit\t\tN/A\t1\tAt
+    start of turn or when spawned: \r\n\t\t\t\tMove 1 space towards nearest enemy
+    plant.\r\n\t\t\t\tDeal 1 damage to an adjacent plant.\r\n\t\t\t\t(Rabbits prioritize
+    moving towards and attacking plants nearest to your Tree, if multiple plants
+    are near the Rabbit)\r\n\t\t\t\tNOTE: Rabbits do not attack Rabbits!\r\n-----------------------------------------------------------------------------------------------------------------\r\n\r\nTIPS:\r\nTo
+    win, you must play Venus Fly Traps or Carrots next to your opponent\u2019s Tree.\r\nTumbleweeds
+    are a great way to destroy enemy flowers!\r\nVenus Fly Traps are powerful defenders
+    against enemy expansion."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1137,8 +1136,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
