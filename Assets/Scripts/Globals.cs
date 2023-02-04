@@ -28,8 +28,26 @@ public class Globals : MonoBehaviour
         veggies,
 
     }
-    
 
+    public enum PlantResources
+    {
+        grass,
+        weeds,
+        tumbleweeds,
+        venus,
+        flowers,
+        carrots,
+    }
+
+    public static Dictionary<PlantResources, int> ResourceCosts = new Dictionary<PlantResources, int>
+    {
+        {PlantResources.grass, 1 },
+        {PlantResources.weeds, 2 },
+        {PlantResources.tumbleweeds, 3 },
+        {PlantResources.venus, 4 },
+        {PlantResources.flowers, 5 },
+        {PlantResources.carrots, 6 }
+    };
     
 //     var axial_direction_vectors = [
 //     Hex(+1, 0), Hex(+1, -1), Hex(0, -1), 
