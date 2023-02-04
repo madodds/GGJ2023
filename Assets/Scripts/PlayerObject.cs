@@ -13,7 +13,7 @@ public class PlayerObject : MonoBehaviour
     }
     private int _money = 1;
 
-    public void AddMoney() => _money++;
+    public void AddMoney(int amount) => _money += amount;
 
     public void TakeMoney(int amount) => _money = Math.Max(_money - amount, 0);
 

@@ -42,11 +42,11 @@ public class Globals : MonoBehaviour
     public enum PlayerCharacter
     {
         Dryad,
-        PumpkinKing,
-        Necromancer
+        Necromancer,
+        PumpkinKing
     }
 
-    public static Dictionary<PlantResources, int> ResourceCosts = new Dictionary<PlantResources, int>
+    public static IReadOnlyDictionary<PlantResources, int> ResourceCosts = new Dictionary<PlantResources, int>
     {
         {PlantResources.grass, 1 },
         {PlantResources.weeds, 2 },
