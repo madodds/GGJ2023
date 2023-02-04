@@ -21,15 +21,15 @@ public class Globals : MonoBehaviour
         veggies,
 
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    
+//     var axial_direction_vectors = [
+//     Hex(+1, 0), Hex(+1, -1), Hex(0, -1), 
+//     Hex(-1, 0), Hex(-1, +1), Hex(0, +1), 
+// ]
+    static public int[][] hex(){
+        int[][] coords={{1, 0}, {1, 1}, {0,-1}, {-1, 0}, {-1, 1}, {0, 1}};
+        return coords;
     }
 }
