@@ -12,8 +12,8 @@ public class PlantNode : MonoBehaviour
     private int coordinatey;
 
     public void SetState(Globals.states state, Globals.player player){
-        state = state;
-        player = player;
+        this.state = state;
+        this.player = player;
     }
 
     public void SetCoordinates(int x, int y){
@@ -35,41 +35,44 @@ public class PlantNode : MonoBehaviour
         
     }
     public List<int> GetCoordinates(){
-        return List<int>[coordinatex, coordinatey];
+        List<int> coordinates = new List<int>
+        {
+            coordinatex,
+            coordinatey
+        };
+        return coordinates;
     }
 
-    private int[] AxialDirection(){
-
-    }
 
     private int[] NodeAdd(int[] hex, int x, int y){
-        newx = hex[0] + x;
-        newy = hex[1] + y;
+        int newx = hex[0] + x;
+        int newy = hex[1] + y;
         int[] newhex = {newx, newy};
         return newhex; 
     }
 
-    public int[] ReturnNeighbor(){
-        int[] neighbors;
+    public List<int[]> ReturnNeighbor(){
+        List<int[]> neighbors = new List<int[]>();
         foreach(int[] hex in Globals.hex()){
-            int count = 0;
-            int[] newhex = AxialAdd(hex, coordinatex, coordinatey);
-            switch(newhex){
-                case (newhex[0] < 0) || (newhex[1] < 0):
-                    break;
-                case newhex[0] > 9:
-                    break;
-                case newhex[1] > 4:
-                    break;
-                case newhex[0] == 9 && (newhex[1] < 0 || newhex[1] > 3):
-                    break;
-                case newhex[0] == 0 && newhex[1] != 2:
-                    break;
-                default:
-                    neighbors[count] = hex;
-                    break;
+            int[] newhex = NodeAdd(hex, coordinatex, coordinatey);
+            if ((newhex[0] < 0) || (newhex[1] < 0)){
+                continue;
             }
-            count++;
+            if (newhex[0] > 9) {
+                continue;
+            }
+            if (newhex[1] > 4) { 
+                continue; 
+            }
+            if((newhex[0] == 9) && (newhex[1] < 0 || newhex[1] > 3))
+            {
+                continue;
+            }
+            if(newhex[0] == 0 && newhex[1] != 2)
+            {
+                continue;
+            }
+            neighbors.Add(hex);
         }
         return neighbors;
     }

@@ -29,7 +29,14 @@ public class Globals : MonoBehaviour
 //     Hex(-1, 0), Hex(-1, +1), Hex(0, +1), 
 // ]
     static public int[][] hex(){
-        int[][] coords={{1, 0}, {1, 1}, {0,-1}, {-1, 0}, {-1, 1}, {0, 1}};
+        int[][] coords = {
+            new int[] { 1, 0 },
+            new int[] { 1, 1 },
+            new int[] { 0, -1 },
+            new int[] { -1, 0 },
+            new int[] { -1, 1 },
+            new int[] { 0, 1 }
+        };
         return coords;
     }
 }
