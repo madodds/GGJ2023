@@ -548,6 +548,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turnPhase: 0
   resourceButtonManager: {fileID: 1819324444}
+  player1Mana: {fileID: 1356049169}
+  player2Mana: {fileID: 1398553841}
   player1: {fileID: 0}
   player2: {fileID: 0}
   secondsDelayBetweenPhases: 5
@@ -3208,6 +3210,10 @@ PrefabInstance:
     - target: {fileID: 3789940499725240950, guid: 7eb547669ddfbf64c8b9a36c4bf02ebb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789940499725240951, guid: 7eb547669ddfbf64c8b9a36c4bf02ebb, type: 3}
+      propertyPath: hexSize
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 3789940499725240951, guid: 7eb547669ddfbf64c8b9a36c4bf02ebb, type: 3}
       propertyPath: showTest
