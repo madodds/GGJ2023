@@ -69,10 +69,10 @@ public class Globals : MonoBehaviour
     {
         {PlantResources.grass, 1 },
         {PlantResources.weeds, 2 },
-        {PlantResources.tumbleweeds, 3 },
-        {PlantResources.venus, 4 },
-        {PlantResources.flowers, 5 },
-        {PlantResources.carrots, 6 }
+        {PlantResources.tumbleweeds, 2 },
+        {PlantResources.venus, 2 },
+        {PlantResources.flowers, 3 },
+        {PlantResources.carrots, 4 }
     };
 
     public static HexStore hexes;
