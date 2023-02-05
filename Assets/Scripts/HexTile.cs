@@ -48,6 +48,11 @@ public class HexTile : MonoBehaviour
         }
     }
 
+    // public void RemovePlants(){
+    //     Component[] components = GetComponents();
+    //     foreach(Component component)
+    // }
+
     public bool HasGrass()
     {
         if(GetComponent<Grass>()){ return true; }

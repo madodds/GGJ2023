@@ -10,6 +10,7 @@ public class HexStore : MonoBehaviour
     public GameObject tilePrefab;
     public GameObject billboardPrefab;
     public Dictionary<(PlayerCharacter, PlantResources), Material> materials;
+    public Material dirtMaterial;
     Dictionary<(int, int), GameObject> hexDictionary;
     //public GameObject originalhexObject;
     public int qLength = 9;
@@ -23,6 +24,7 @@ public class HexStore : MonoBehaviour
     void Awake()
     {
         hexes = this;
+        dirtMaterial = Resources.Load<Material>($"Materials/Dirt");
         materials = new Dictionary<(PlayerCharacter, PlantResources), Material>();
         Array characterValues = Enum.GetValues(typeof(PlayerCharacter));
         foreach( PlayerCharacter cv in characterValues )
