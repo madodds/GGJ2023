@@ -1,29 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+using static Globals;
 
 public class ResourceButtonManager : MonoBehaviour
 {
-
+    public TurnManager turnManager;
     public List<ResourceButton> resourceButtons;
+
     // Start is called before the first frame update
     void Start()
     {
-
-        var character = new PlayerObject()
-        {
-            PlayerCharacter = Globals.PlayerCharacter.PumpkinKing
-        };
-        character.AddMoney(4);
         foreach (var button in resourceButtons)
         {
-            button.SetCharacterTextures(character);
+            button.DeactivateAll = DeactivateAll;
+        }
+        RefreshButtonTextures();
+    }
+
+    public void RefreshButtonTextures()
+    {
+        foreach (var button in resourceButtons)
+        {
+            if(turnManager.turnPhase == TurnPhases.SpendResources){
+                button.activated = true;
+            }
+            else {
+                button.activated = false;
+            }
+            button.SetCharacterTextures(turnManager.CurrentCharacter);
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DeactivateAll()
     {
-        
+        foreach (var button in resourceButtons)
+        {
+            button.activated = false;
+            button.tileButton.interactable = false;
+        }
     }
 }

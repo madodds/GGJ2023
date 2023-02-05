@@ -1,30 +1,52 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+
+using static Globals;
 
 public class TurnManager : MonoBehaviour
 {
-    public enum TurnPhases
-    {
-        BetweenPhases,
-        StartTurn,
-        GainResources,
-        ResolvePlants,
-        ResolveRabbits,
-        CheckEndGame,
-        SpendResources
-    }
 
     public TurnPhases turnPhase = TurnPhases.BetweenPhases;
-    private PlayerObject activePlayer;
+    public PlayerObject CurrentCharacter => activePlayer;
+    public ResourceButtonManager resourceButtonManager;
+
+    public TextMeshProUGUI player1Mana;
+    public TextMeshProUGUI player2Mana;
+    public PlayerObject activePlayer;
+
+    public PlayerObject player1;
+    public PlayerObject player2;
 
     public int secondsDelayBetweenPhases = 5;
 
     // Start is called before the first frame update
     void Start()
     {
-        activePlayer = CharacterSelect.player1;
+        if(CharacterSelect.player1){
+            player1 = CharacterSelect.player1;
+        }
+        else
+        {
+            player1 = new PlayerObject();
+            player1.PlayerName = "Player 1";
+            player1.PlayerCharacter = PlayerCharacter.Necromancer;
+        }
+        if(CharacterSelect.player2){
+            player2 = CharacterSelect.player2;
+        }
+        else 
+        {
+            player2 = new PlayerObject();
+            player2.PlayerName = "Player 2";
+            player2.PlayerCharacter = PlayerCharacter.PumpkinKing;
+        }
+
+        turnManager = this;
+
+        activePlayer = player1;
         GoToPhase("doStartTurn");
     }
 
@@ -52,10 +74,7 @@ public class TurnManager : MonoBehaviour
             case TurnPhases.SpendResources:
                 // Activate purchasing UI then
                 // Await clicking end turn
-                if (Input.GetMouseButtonDown(0)){
-                    Debug.Log(activePlayer.PlayerName + " spends 1 resource.");
-                    activePlayer.TakeMoney(1);
-                    Debug.Log(activePlayer.PlayerName + " has " + activePlayer.Money + " resources.");
+                if(Input.GetKeyDown(KeyCode.Return)){
                     EndTurn();
                 }
                 break;
@@ -77,6 +96,7 @@ public class TurnManager : MonoBehaviour
         Debug.Log(activePlayer.PlayerName + " gains " + addedResources + " resources.");
         activePlayer.AddMoney(addedResources);
         Debug.Log(activePlayer.PlayerName + " has " + activePlayer.Money + " resources.");
+        RefreshUI();
         turnPhase = TurnPhases.GainResources;
     }
 
@@ -102,18 +122,33 @@ public class TurnManager : MonoBehaviour
     {
         Debug.Log("Spend Resources");
         turnPhase = TurnPhases.SpendResources;
+        RefreshUI();
     }
 
     void doStartTurn()
     {
+        RefreshUI();
         Debug.Log("Starting Turn for " + activePlayer.PlayerName);
         turnPhase = TurnPhases.StartTurn;
     }
 
     void EndTurn() {
         // Maybe bug? who knows.
-        activePlayer = activePlayer == CharacterSelect.player1 ? CharacterSelect.player2 : CharacterSelect.player1;
+        // activePlayer = activePlayer == player1 ? player2 : player1;
+        if(activePlayer.PlayerCharacter==player1.PlayerCharacter){
+            activePlayer = player2;
+        }
+        else {
+            activePlayer = player1;
+        }
         GoToPhase("doStartTurn");
+    }
+
+    public void RefreshUI()
+    {
+        resourceButtonManager.RefreshButtonTextures();
+        player1Mana.text = player1.Money.ToString();
+        player2Mana.text = player2.Money.ToString();
     }
 
 }

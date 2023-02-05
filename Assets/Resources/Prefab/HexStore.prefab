@@ -51,6 +51,7 @@ MonoBehaviour:
   qLength: 9
   rLength: 5
   hexSize: 1
+  showTest: 0
 --- !u!1 &4060552636797096859
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +217,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4473003174110707425, guid: ef7a4ec538942ce45a962c2948590984, type: 3}
+  - {fileID: 2100000, guid: 9f600f845ac35634d9eb7ee73a2ab0e7, type: 2}
   - {fileID: 2100000, guid: 3b028d1af152a754980016869014922f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

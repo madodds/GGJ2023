@@ -13,11 +13,11 @@ public class CameraControl : MonoBehaviour
     public float maxX = 30.0f;
     public float minX = -30.0f;
 
-    Camera camera;
+    Camera myCamera;
 
     void Awake()
     {
-        camera = GetComponent<Camera>();
+        myCamera = GetComponent<Camera>();
     }
 
     // Start is called before the first frame update
@@ -50,8 +50,8 @@ public class CameraControl : MonoBehaviour
         }
 
         if(Input.mouseScrollDelta.y != 0.0f){
-            if(camera){
-                camera.fieldOfView -= Input.mouseScrollDelta.y * zoomSpeed;
+            if(myCamera){
+                myCamera.fieldOfView -= Input.mouseScrollDelta.y * zoomSpeed;
                 // Debug.Log("fov "+ camera.fieldOfView);
                 // if(camera.fieldOfView < minFov){
                 //     camera.fieldOfView = minFov;

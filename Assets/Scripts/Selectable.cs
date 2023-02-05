@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static Globals;
 
 public class Selectable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -11,31 +13,34 @@ public class Selectable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public Color invalidHighlightColor = Color.red;
     Color defaultColor;
 
-    MeshRenderer renderer;
-
-    PlantNode plantNode;
-
+    MeshRenderer myRenderer;
     AudioSource audioSource;
 
     void Awake()
     {
-        plantNode = GetComponent<PlantNode>();
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        renderer = GetComponent<MeshRenderer>();
-        defaultColor = renderer.material.color;
+        myRenderer = GetComponent<MeshRenderer>();
+        defaultColor = myRenderer.material.color;
         audioSource = GetComponent<AudioSource>();
     }
 
     void OnMouseOver()
     {
-        if(IsValid()){
-            renderer.material.color = validHighlightColor;
-        } else {
-            renderer.material.color = invalidHighlightColor;
+        HexTile hexTile = GetComponentInParent<HexTile>();
+        HexCoord hexCoord = GetComponentInParent<HexCoord>();
+        if(hexTile && hexCoord) {
+            if( hexes.purchasedPlant != null ){
+                if(hexes.CanPlacePlant(hexCoord)){
+                    myRenderer.material.color = validHighlightColor;
+                } else {
+                    myRenderer.material.color = invalidHighlightColor;
+                }
+            } 
         }
     }
 
@@ -51,21 +56,28 @@ public class Selectable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     void OnMouseExit()
     {
-        renderer.material.color = defaultColor;
+        myRenderer.material.color = defaultColor;
     }
 
     void OnMouseDown()
     {
-        Debug.Log("You clicked", this);
-        if(plantNode){
-            Debug.Log("Has PlantNode");
+        HexTile hexTile = GetComponentInParent<HexTile>();
+        HexCoord hexCoord = GetComponentInParent<HexCoord>();
+        if(hexTile && hexCoord) {
+            if( hexes.purchasedPlant != null ){
+                // Attempt to place plant in this tile
+                if(hexes.CanPlacePlant(hexCoord)){
+                    Debug.Log("Placing " + Enum.GetName(typeof(PlantResources), hexes.purchasedPlant));
+                    hexes.PlacePlant(hexCoord);
+                    hexes.purchasedPlant = null;
+                }
+                else {
+                    Debug.Log("Invalid location for " + Enum.GetName(typeof(PlantResources), hexes.purchasedPlant));
+                }
+            }
         }
         if(audioSource){
             audioSource.Play();
         }
-    }
-
-    bool IsValid(){
-        return true;
     }
 }

@@ -47,6 +47,7 @@ public class CharacterSelect : MonoBehaviour
             }
             else
             {
+                loadNextScene = false;
                 SceneManager.LoadScene(nextSceneName);
             }
         }
@@ -74,5 +75,18 @@ public class CharacterSelect : MonoBehaviour
                 loadNextScene = true;
             }
         }
+    }
+
+    public static PlayerObject GetWinnerChickenSandwich()
+    {
+        if (player1 != null && player1.WonTheGame)
+        {
+            return player1;
+        }
+        if (player2 != null && player2.WonTheGame)
+        {
+            return player2;
+        }
+        return null;
     }
 }
