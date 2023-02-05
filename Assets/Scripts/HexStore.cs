@@ -9,7 +9,7 @@ public class HexStore : MonoBehaviour
     //public Mesh tileMesh;
     public GameObject tilePrefab;
     public GameObject billboardPrefab;
-    Dictionary<(PlayerCharacter, PlantResources), Material> materials;
+    public Dictionary<(PlayerCharacter, PlantResources), Material> materials;
     Dictionary<(int, int), GameObject> hexDictionary;
     //public GameObject originalhexObject;
     public int qLength = 9;
@@ -117,8 +117,9 @@ public class HexStore : MonoBehaviour
     public void PlacePlant(HexCoord hexCoord)
     {
         GameObject hexObject = hexDictionary[(hexCoord.q, hexCoord.r)];
-        //HexTile hexTile = hexObject.GetComponent<HexTile>();
+        HexTile hexTile = hexObject.GetComponent<HexTile>();
         if(purchasedPlant == null) { return; }
+        hexTile.owner = turnManager.activePlayer.PlayerCharacter;
         switch(purchasedPlant) {
             case PlantResources.grass:
                 hexObject.AddComponent<Grass>().Sprout();
@@ -141,7 +142,10 @@ public class HexStore : MonoBehaviour
                 break;
             default:
                 Debug.Log("invalid plant place");
+                hexTile.owner  = null;
                 break;
         }
+        turnManager.turnPhase = TurnPhases.SpendResources;
+        turnManager.RefreshUI();
     }
 }

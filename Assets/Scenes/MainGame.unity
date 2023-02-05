@@ -326,6 +326,7 @@ MonoBehaviour:
   costText: {fileID: 520548089}
   tileImage: {fileID: 32764173}
   tileButton: {fileID: 32764174}
+  activated: 0
 --- !u!114 &32764173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,9 +551,10 @@ MonoBehaviour:
   resourceButtonManager: {fileID: 1819324444}
   player1Mana: {fileID: 1356049169}
   player2Mana: {fileID: 1398553841}
+  activePlayer: {fileID: 0}
   player1: {fileID: 0}
   player2: {fileID: 0}
-  secondsDelayBetweenPhases: 5
+  secondsDelayBetweenPhases: 1
 --- !u!4 &146872835
 Transform:
   m_ObjectHideFlags: 0
@@ -1082,6 +1084,7 @@ MonoBehaviour:
   costText: {fileID: 693700041}
   tileImage: {fileID: 937801390}
   tileButton: {fileID: 937801391}
+  activated: 0
 --- !u!114 &937801390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1353,6 +1356,7 @@ MonoBehaviour:
   costText: {fileID: 1361639019}
   tileImage: {fileID: 1044647126}
   tileButton: {fileID: 1044647127}
+  activated: 0
 --- !u!114 &1044647126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1489,6 +1493,7 @@ MonoBehaviour:
   costText: {fileID: 1034071335}
   tileImage: {fileID: 1062483965}
   tileButton: {fileID: 1062483966}
+  activated: 0
 --- !u!114 &1062483965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3357,6 +3362,7 @@ MonoBehaviour:
   costText: {fileID: 1534599933}
   tileImage: {fileID: 1995969638}
   tileButton: {fileID: 1995969637}
+  activated: 0
 --- !u!1 &2058295687
 GameObject:
   m_ObjectHideFlags: 0
@@ -3414,6 +3420,7 @@ MonoBehaviour:
   costText: {fileID: 1617275856}
   tileImage: {fileID: 2058295690}
   tileButton: {fileID: 2058295691}
+  activated: 0
 --- !u!114 &2058295690
 MonoBehaviour:
   m_ObjectHideFlags: 0

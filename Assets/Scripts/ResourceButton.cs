@@ -30,12 +30,14 @@ public class ResourceButton : MonoBehaviour
 
     public void SetCharacterTextures(PlayerObject character)
     { 
-        tileButton.interactable = activated && (cost < character.Money);
+        tileButton.interactable = activated && (cost <= character.Money);
         tileImage.texture = LookupTextureAsset(character.PlayerCharacter, plantType);
     }
 
     public void BuyPlant(){
         DeactivateAll();
+        turnManager.turnPhase = TurnPhases.PlacePlants;
+        turnManager.activePlayer.TakeMoney(cost);
         hexes.purchasedPlant = plantType;
     }
 }
