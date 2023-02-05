@@ -23,19 +23,15 @@ public class HexTile : MonoBehaviour
 
     public void SetBillboard(Material billboardMaterial)
     {
-        Debug.Log("SetBillboard "+ billboardMaterial);
         GameObject billboardObject;
         Transform billboardTransform = transform.Find("Billboard");
         if(billboardTransform){
-            Debug.Log("Changing existing billboard");
             billboardObject = billboardTransform.gameObject;
         } else {
-            Debug.Log("Instantiating billboard");
             billboardObject = Instantiate(billboardPrefab, transform);
         }
         MeshRenderer bbRenderer = billboardObject.GetComponent<MeshRenderer>();
         if(bbRenderer){
-            Debug.Log("Found bbRenderer");
             bbRenderer.material = billboardMaterial;
         }
     }

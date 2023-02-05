@@ -27,7 +27,6 @@ public class HexStore : MonoBehaviour
             Array plantValues = Enum.GetValues(typeof(PlantResources));
             foreach( PlantResources pv in plantValues)
             {
-                Debug.Log("Loading Material for " + Enum.GetName(typeof(PlayerCharacter), cv) + " " + Enum.GetName(typeof(PlantResources), pv));
                 Material material = Resources.Load<Material>(
                     $"Materials/PlayerTypes/{Enum.GetName(typeof(PlayerCharacter), cv)}/{Enum.GetName(typeof(PlantResources), pv)}"
                 );
@@ -50,10 +49,14 @@ public class HexStore : MonoBehaviour
     void Generate()
     {
         hexDictionary = new Dictionary<(int, int), GameObject>();
+        // Delete this when testing is over
+        // <---
+            Array characterValues = Enum.GetValues(typeof(PlayerCharacter));
+            Array plantValues = Enum.GetValues(typeof(PlantResources));
+        // --->
         for(int i = 0; i < qLength; i++){
             for(int j = 0; j < rLength; j++){
                 int s = i+j;
-                //Debug.Log("q: " + i + ", r: " + j +", s: " +s);
                 if(s<2 || s>10){
                     continue;
                 }
@@ -63,14 +66,14 @@ public class HexStore : MonoBehaviour
                 hexTile.billboardPrefab = billboardPrefab;
                 hexTile.tilePrefab = tilePrefab;
 
-                if(i+j==2){
-                    //Plant hexPlant = hexObject.AddComponent(typeof(Plant)) as Plant;
-                    Material billboardMaterial = materials[(PlayerCharacter.PumpkinKing, PlantResources.tumbleweeds)];
-                    if(!billboardMaterial){
-                        Debug.Log("Couldn't find material for "+ Enum.GetName(typeof(PlayerCharacter), PlayerCharacter.PumpkinKing) + " " + Enum.GetName(typeof(PlantResources), PlantResources.tumbleweeds));
-                    } else{
-                        hexTile.SetBillboard(billboardMaterial);
-                    }
+                if(i < plantValues.Length && j < characterValues.Length)
+                {
+                    // Material billboardMaterial = materials[(characterValues[j], plantValues[i])];
+                    // if(!billboardMaterial){
+                    //     Debug.Log("Couldn't find material for "+ Enum.GetName(typeof(PlayerCharacter), characterValues[j]) + " " + Enum.GetName(typeof(PlantResources), plantValues[i]));
+                    // } else{
+                    //     hexTile.SetBillboard(billboardMaterial);
+                    // }
                 }
 
                 HexCoord hexCoord = hexObject.GetComponent<HexCoord>();
