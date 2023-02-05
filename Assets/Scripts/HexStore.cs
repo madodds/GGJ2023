@@ -11,7 +11,7 @@ public class HexStore : MonoBehaviour
     public GameObject billboardPrefab;
     public Dictionary<(PlayerCharacter, PlantResources), Material> materials;
     public Material dirtMaterial;
-    Dictionary<(int, int), GameObject> hexDictionary;
+    public Dictionary<(int, int), GameObject> hexDictionary;
     //public GameObject originalhexObject;
     public int qLength = 9;
     public int rLength = 5;

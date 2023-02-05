@@ -65,7 +65,7 @@ public class TurnManager : MonoBehaviour
                 break;
             case TurnPhases.ResolvePlants:
                 // call to TileManager to resolve plants
-                GoToPhase("doResolveRabbits");
+                
                 break;
             case TurnPhases.ResolveRabbits:
                 // call to TileManager to resove rabbits
@@ -104,6 +104,21 @@ public class TurnManager : MonoBehaviour
     {
         Debug.Log("Resolving Plants");
         turnPhase = TurnPhases.ResolvePlants;
+        foreach(KeyValuePair<(int, int), GameObject> kvp in hexes.hexDictionary){
+            GameObject hexObject = kvp.Value;
+            HexTile hexTile = hexObject.GetComponent<HexTile>();
+            if(hexTile.owner != null && (PlayerCharacter)hexTile.owner == turnManager.activePlayer.PlayerCharacter){
+                VenusFlyTrap ven = hexObject.GetComponent<VenusFlyTrap>();
+                Tumbleweed tum = hexObject.GetComponent<Tumbleweed>();
+                if(ven){
+                    ven.Attack();
+                }
+                if(tum){
+                    tum.Attack();
+                }
+            }
+        }
+        GoToPhase("doResolveRabbits");
     }
 
     void doResolveRabbits()
