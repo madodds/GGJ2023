@@ -49,7 +49,8 @@ public class Globals : MonoBehaviour
 
     public enum MiscResources
     {
-        portrait
+        portrait,
+        background
     }
 
     public enum TurnPhases
