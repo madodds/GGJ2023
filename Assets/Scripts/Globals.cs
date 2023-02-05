@@ -79,10 +79,31 @@ public class Globals : MonoBehaviour
     public static HexStore hexes;
     public static TurnManager turnManager;
     
-//     var axial_direction_vectors = [
-//     Hex(+1, 0), Hex(+1, -1), Hex(0, -1), 
-//     Hex(-1, 0), Hex(-1, +1), Hex(0, +1), 
-// ]
+    // r
+    // dr
+    // dl
+    // l
+    // ul
+    // ur
+    // public static int[][] axial_direction_vectors = [
+    //     [1, 0], [1, -1], [0, -1], 
+    //     [-1, 0], [-1, 1], [0, 1]
+    // ];
+
+    public static List<(int, int)> hexDirections = new List<(int, int)>
+        {
+            (1, 0), (1, -1), (0, -1), (-1, 0), (-1, 1), (0, 1)
+        };
+
+    // public static Dictionary<string, int[]> hexDirections = new Dictionary<string, int[]>{
+    //     {"r", [1,0]},
+    //     {"dr", [1,-1]}, 
+    //     {"dl", [0,-1]},
+    //     {"l", [-1,0]},
+    //     {"ul", [-1,1]},
+    //     {"ur", [0,1]}
+    // };
+
     static public int[][] hex(){
         int[][] coords = {
             new int[] { 1, 0 },

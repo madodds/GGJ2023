@@ -18,4 +18,36 @@ public class Damageable : MonoBehaviour
     {
         
     }
+
+    public void TakeDamage(int damage)
+    {
+        hp -= damage;
+        Debug.Log("Tooke "+damage+" damage. At "+hp+" HP");
+        if(hp <= 0){
+            Weed weed = GetComponent<Weed>();
+            if(weed){
+                weed.Kill();
+            }
+            Tumbleweed tumbleweed = GetComponent<Tumbleweed>();
+            if(tumbleweed){
+                tumbleweed.Kill();
+            }
+            VenusFlyTrap ven = GetComponent<VenusFlyTrap>();
+            if(ven){
+                ven.Kill();
+            }
+            Flower flower = GetComponent<Flower>();
+            if(flower){
+                flower.Kill();
+            }
+            Carrot carrot = GetComponent<Carrot>();
+            if(carrot){
+                carrot.Kill();
+            }
+            Tree tree = GetComponent<Tree>();
+            if(tree){
+                tree.Kill();
+            }
+        }
+    }
 }

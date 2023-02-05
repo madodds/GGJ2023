@@ -45,4 +45,25 @@ public class Tumbleweed : MonoBehaviour
             Debug.Log("No tile.");
         }
     }
+
+    public void Kill()
+    {
+        HexTile hexTile = GetComponent<HexTile>();
+        if(hexTile != null){
+            hexTile.RemoveBillboard();
+            Grass grass = GetComponent<Grass>();
+            if(grass){
+                grass.Kill();
+            }
+            Damageable damageable = GetComponent<Damageable>();
+            if(damageable!= null){
+                Destroy(damageable);
+            }
+            Destroy(this);
+        }
+    }
+
+    public void Attack(){
+        
+    }
 }

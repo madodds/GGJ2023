@@ -42,6 +42,9 @@ public class HexTile : MonoBehaviour
     public void RemoveBillboard(){
         GameObject billboardObject;
         Transform billboardTransform = transform.Find("Billboard");
+        if(billboardTransform==null){
+            billboardTransform = transform.Find("Billboard(Clone)");
+        }
         if(billboardTransform){
              billboardObject = billboardTransform.gameObject;
             Destroy(billboardObject);

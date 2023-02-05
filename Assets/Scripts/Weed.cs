@@ -63,9 +63,4 @@ public class Weed : MonoBehaviour
             Destroy(this);
         }
     }
-
-    public void Attack()
-    {
-
-    }
 }
