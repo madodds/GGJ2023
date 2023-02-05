@@ -16,7 +16,7 @@ public class HexStore : MonoBehaviour
     public int rLength = 5;
     public int hexSize = 1;
     
-
+    public bool showTest = false;
 
     void Awake()
     {
@@ -67,7 +67,7 @@ public class HexStore : MonoBehaviour
                 hexTile.billboardPrefab = billboardPrefab;
                 hexTile.tilePrefab = tilePrefab;
 
-                if(i < plantValues.Length && j < characterValues.Length)
+                if(showTest && i < plantValues.Length && j < characterValues.Length)
                 {
                     Material billboardMaterial = materials[((PlayerCharacter)j, (PlantResources)i)];
                     if(!billboardMaterial){
