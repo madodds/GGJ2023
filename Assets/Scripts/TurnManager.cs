@@ -139,7 +139,13 @@ public class TurnManager : MonoBehaviour
 
     void EndTurn() {
         // Maybe bug? who knows.
-        activePlayer = activePlayer == player1 ? player2 : player1;
+        // activePlayer = activePlayer == player1 ? player2 : player1;
+        if(activePlayer.PlayerCharacter==player1.PlayerCharacter){
+            activePlayer = player2;
+        }
+        else {
+            activePlayer = player1;
+        }
         GoToPhase("doStartTurn");
     }
 
