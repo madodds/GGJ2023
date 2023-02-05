@@ -39,6 +39,15 @@ public class HexTile : MonoBehaviour
         }
     }
 
+    public void RemoveBillboard(){
+        GameObject billboardObject;
+        Transform billboardTransform = transform.Find("Billboard");
+        if(billboardTransform){
+             billboardObject = billboardTransform.gameObject;
+            Destroy(billboardObject);
+        }
+    }
+
     public bool HasGrass()
     {
         if(GetComponent<Grass>()){ return true; }
