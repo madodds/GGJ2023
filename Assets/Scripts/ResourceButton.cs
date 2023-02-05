@@ -26,12 +26,6 @@ public class ResourceButton : MonoBehaviour
     public void SetCharacterTextures(PlayerObject character)
     { 
         tileButton.interactable = cost < character.Money;
-        tileImage.texture = GetPlayerPlantResources(character.PlayerCharacter, plantType);
-        //tileButton.image = tileImage;
+        tileImage.texture = LookupTextureAsset(character.PlayerCharacter, plantType);
     }
-    
-    public static Texture GetPlayerPlantResources(PlayerCharacter playerCharacter, PlantResources plantResource) => 
-        Resources.Load<Texture>(
-            $"Art/PlayerTypes/{Enum.GetName(typeof(PlayerCharacter), playerCharacter)}/{Enum.GetName(typeof(PlantResources), plantResource)}"
-        );
 }
