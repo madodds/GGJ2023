@@ -25,8 +25,7 @@ public class TurnManager : MonoBehaviour
 
     public int secondsDelayBetweenPhases = 5;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if(CharacterSelect.player1){
             player1 = CharacterSelect.player1;
@@ -48,7 +47,11 @@ public class TurnManager : MonoBehaviour
         }
 
         turnManager = this;
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
         activePlayer = player1;
         GoToPhase("doStartTurn");
     }
