@@ -34,6 +34,8 @@ public class VenusFlyTrap : MonoBehaviour
                     Debug.Log("didn't find material");
                 }
                 hexTile.SetBillboard(plantMaterial);
+                Damageable damageable = gameObject.AddComponent<Damageable>();
+                damageable.hp = 2;
             }
             else{
                 Debug.Log("Can't sprout. No owner");    

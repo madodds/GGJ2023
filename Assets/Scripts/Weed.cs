@@ -35,21 +35,8 @@ public class Weed : MonoBehaviour
                 }
 
                 hexTile.SetBillboard(plantMaterial);
-                // Debug.Log("Found material" + plantMaterial.name);
-                // Transform billboardTransform = transform.Find("Billboard");
-                // if(billboardTransform == null){
-                //     Debug.Log("didn't find tile transform");
-                // }
-                // MeshRenderer tileRenderer = billboardTransform.gameObject.GetComponent<MeshRenderer>();
-                // if(tileRenderer == null){
-                //     Debug.Log("didn't find tile renderer");
-                // }
-                // foreach ( Material mat in tileRenderer.materials){
-                //     Debug.Log(mat.name);
-                // }
-                // Material[] materials = tileRenderer.materials;
-                // materials[1] = plantMaterial;
-                // tileRenderer.materials = materials;
+                Damageable damageable = gameObject.AddComponent<Damageable>();
+                damageable.hp = 3;
             }
             else{
                 Debug.Log("Can't sprout. No owner");    
@@ -58,5 +45,27 @@ public class Weed : MonoBehaviour
         else {
             Debug.Log("No tile.");
         }
+    }
+
+    public void Kill()
+    {
+        HexTile hexTile = GetComponent<HexTile>();
+        if(hexTile != null){
+            hexTile.RemoveBillboard();
+            Grass grass = GetComponent<Grass>();
+            if(grass){
+                grass.Kill();
+            }
+            Damageable damageable = GetComponent<Damageable>();
+            if(damageable!= null){
+                Destroy(damageable);
+            }
+            Destroy(this);
+        }
+    }
+
+    public void Attack()
+    {
+
     }
 }

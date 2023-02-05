@@ -9,7 +9,7 @@ public class Flower : MonoBehaviour
 {
 
     public PlantResources plantType = PlantResources.flowers;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +34,8 @@ public class Flower : MonoBehaviour
                     Debug.Log("didn't find material");
                 }
                 hexTile.SetBillboard(plantMaterial);
+                Damageable damageable = gameObject.AddComponent<Damageable>();
+                damageable.hp = 1;
             }
             else{
                 Debug.Log("Can't sprout. No owner");    

@@ -57,4 +57,18 @@ public class Grass : MonoBehaviour
             Debug.Log("No tile.");
         }
     }
+
+    public void Kill()
+    {
+        HexTile hexTile = GetComponent<HexTile>();
+        if(hexTile != null){
+            hexTile.owner = null;
+            Transform tileTransform = transform.Find("Tile");
+            MeshRenderer tileRenderer = tileTransform.gameObject.GetComponent<MeshRenderer>();
+            Material[] materials = tileRenderer.materials;
+            materials[1] = hexes.dirtMaterial;
+            tileRenderer.materials = materials;
+            Destroy(this);
+        }
+    }
 }
