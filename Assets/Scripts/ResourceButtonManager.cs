@@ -12,9 +12,9 @@ public class ResourceButtonManager : MonoBehaviour
 
         var character = new PlayerObject()
         {
-            PlayerCharacter = Globals.PlayerCharacter.Necromancer
+            PlayerCharacter = Globals.PlayerCharacter.PumpkinKing
         };
-        character.AddMoney(2);
+        character.AddMoney(4);
         foreach (var button in resourceButtons)
         {
             button.SetCharacterTextures(character);
