@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class CharacterSelect : MonoBehaviour
 {
+
     public TextMeshProUGUI announcementText;
     public Button dryadButton;
     public Button pumpkinButton;
@@ -16,8 +17,8 @@ public class CharacterSelect : MonoBehaviour
     public float waitSeconds = 3;
     public string nextSceneName = "MainGame";
 
-    private PlayerObject player1;
-    private PlayerObject player2;
+    public static PlayerObject player1;
+    public static PlayerObject player2;
 
     private PlayerObject activePlayer;
     private bool loadNextScene = false;
@@ -31,6 +32,7 @@ public class CharacterSelect : MonoBehaviour
         player2 = gameObject.AddComponent<PlayerObject>();
         player2.PlayerName = "Player 2";
         player2.AddMoney(1);
+        DontDestroyOnLoad(gameObject);
         PlayerPrompt(player1);
     }
 

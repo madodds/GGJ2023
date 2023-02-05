@@ -6,6 +6,7 @@ using System;
 
 public class PlayerObject : MonoBehaviour
 {
+
     public PlayerCharacter PlayerCharacter;
 
     public string PlayerName;
@@ -19,6 +20,4 @@ public class PlayerObject : MonoBehaviour
     public void AddMoney(int amount) => _money += amount;
 
     public void TakeMoney(int amount) => _money = Math.Max(_money - amount, 0);
-
-
 }
