@@ -21,10 +21,13 @@ public class TurnManager : MonoBehaviour
     public int[] resources = {0, 0};
 
     public int secondsDelayBetweenPhases = 5;
+    private PlantNodeMap plantNodeMap;
 
     // Start is called before the first frame update
     void Start()
     {
+        var plantNodeMapGameObj = GameObject.FindGameObjectWithTag("plantNodeMap");
+        plantNodeMap = plantNodeMapGameObj.GetComponent<PlantNodeMap>();
         GoToPhase("doStartTurn");
     }
 
@@ -74,6 +77,7 @@ public class TurnManager : MonoBehaviour
     void doGainResources()
     {
         int addedResources = 2;
+        addedResources = GetPlayerFlowers();
         Debug.Log( GetPlayerName() + " gains " + addedResources + " resources.");
         resources[player] += addedResources;
         Debug.Log( GetPlayerName() + " has " + resources[player] + " resources.");
@@ -117,6 +121,12 @@ public class TurnManager : MonoBehaviour
             player = 0;
         }
         GoToPhase("doStartTurn");
+    }
+
+    int GetPlayerFlowers()
+    {
+        int flowers = 0;
+        return flowers;
     }
 
     string GetPlayerName(){

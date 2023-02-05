@@ -18,9 +18,9 @@ public class PlantNodeMap : MonoBehaviour
         for (int x = -5; x < 5; x++)
         {
             List<PlantNode> templist = new List<PlantNode>();
-            var plantNode = Resources.Load<PlantNode>("Prefab/PlantNode");
             if (x == -5)
             {
+                var plantNode = Resources.Load<PlantNode>("Prefab/PlantNode");
                 PlantNode newPlantNode = Instantiate(plantNode);
                 newPlantNode.SetCoordinates(x, 0);
                 newPlantNode.SetState(Globals.states.tree, Globals.player.player1);
@@ -30,6 +30,7 @@ public class PlantNodeMap : MonoBehaviour
             {
                 for (int y = -1; y < 3; y++)
                 {
+                    var plantNode = Resources.Load<PlantNode>("Prefab/PlantNode");
                     PlantNode newPlantNode = Instantiate(plantNode);
                     newPlantNode.SetCoordinates(x, y);
                     if (y == 0)
@@ -43,6 +44,7 @@ public class PlantNodeMap : MonoBehaviour
             {
                 for (int y = -2; y < 3; y++)
                 {
+                    var plantNode = Resources.Load<PlantNode>("Prefab/PlantNode");
                     PlantNode newPlantNode = Instantiate(plantNode);
                     newPlantNode.SetCoordinates(x, y);
                     newPlantNode.SetState(Globals.states.empty, Globals.player.none);
@@ -68,10 +70,10 @@ public class PlantNodeMap : MonoBehaviour
                     node.SetCheckedState(true);
                     continue;
                 }
-                List<int[]> neighbors = node.ReturnNeighbor();
-                foreach (int[] neighbor in neighbors)
+                List<(int, int)> neighbors = node.FindNeighbors();
+                foreach ((int, int) neighbor in neighbors)
                 {
-                    PlantNode neighborNode = nodelist[neighbor[0]][neighbor[1]];
+                    PlantNode neighborNode = nodelist[neighbor.Item1][neighbor.Item2];
                     if (!neighborNode.GetCheckedState())
                     {
                         continue;
@@ -109,6 +111,7 @@ public class PlantNodeMap : MonoBehaviour
     void Update()
     {
         //CheckNeighbors();
+
     }
 
     

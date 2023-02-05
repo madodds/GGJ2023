@@ -11,6 +11,8 @@ public class Globals : MonoBehaviour
     public const string k_ButtonNameSubmit = "Submit";
     public const string k_ButtonNameCancel = "Cancel";
     public const string k_ButtonReload = "Reload";
+    public const int qLength = 5;
+    public const int rLength = 7;
 
     public enum player {
         none,
@@ -63,7 +65,7 @@ public class Globals : MonoBehaviour
     static public int[][] hex(){
         int[][] coords = {
             new int[] { 1, 0 },
-            new int[] { 1, 1 },
+            new int[] { 1, -1 },
             new int[] { 0, -1 },
             new int[] { -1, 0 },
             new int[] { -1, 1 },

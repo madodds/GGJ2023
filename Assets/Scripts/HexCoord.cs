@@ -15,4 +15,9 @@ public class HexCoord : MonoBehaviour
         float y = size * (                         3.0f/2 * r);//r * 1.0f;
         transform.position = new Vector3(x, 0, y);
     }
+
+    public void Start()
+    {
+        
+    }
 }
