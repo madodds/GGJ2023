@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using static Globals;
+
 public class TurnManager : MonoBehaviour
 {
     public enum TurnPhases
@@ -21,12 +23,34 @@ public class TurnManager : MonoBehaviour
     public ResourceButtonManager resourceButtonManager;
     private PlayerObject activePlayer;
 
+    public PlayerObject player1;
+    public PlayerObject player2;
+
     public int secondsDelayBetweenPhases = 5;
 
     // Start is called before the first frame update
     void Start()
     {
-        activePlayer = CharacterSelect.player1;
+        if(CharacterSelect.player1){
+            player1 = CharacterSelect.player1;
+        }
+        else
+        {
+            player1 = new PlayerObject();
+            player1.PlayerName = "Player 1";
+            player1.PlayerCharacter = PlayerCharacter.Necromancer;
+        }
+        if(CharacterSelect.player2){
+            player2 = CharacterSelect.player2;
+        }
+        else 
+        {
+            player2 = new PlayerObject();
+            player2.PlayerName = "Player 2";
+            player2.PlayerCharacter = PlayerCharacter.PumpkinKing;
+        }
+
+        activePlayer = player1;
         GoToPhase("doStartTurn");
     }
 
@@ -115,7 +139,7 @@ public class TurnManager : MonoBehaviour
 
     void EndTurn() {
         // Maybe bug? who knows.
-        activePlayer = activePlayer == CharacterSelect.player1 ? CharacterSelect.player2 : CharacterSelect.player1;
+        activePlayer = activePlayer == player1 ? player2 : player1;
         GoToPhase("doStartTurn");
     }
 
