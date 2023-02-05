@@ -12,6 +12,9 @@ public class ResourceButton : MonoBehaviour
     public TextMeshProUGUI costText;
     public RawImage tileImage;
     public Button tileButton;
+    public bool activated;
+
+    public Action DeactivateAll;
 
     private int cost
     {
@@ -20,12 +23,19 @@ public class ResourceButton : MonoBehaviour
 
     private void Start()
     {
+        activated = false;
         costText.text = cost.ToString();
+        tileButton.onClick.AddListener(BuyPlant);
     }
 
     public void SetCharacterTextures(PlayerObject character)
     { 
-        tileButton.interactable = cost < character.Money;
+        tileButton.interactable = activated && (cost < character.Money);
         tileImage.texture = LookupTextureAsset(character.PlayerCharacter, plantType);
+    }
+
+    public void BuyPlant(){
+        DeactivateAll();
+        hexes.purchasedPlant = plantType;
     }
 }

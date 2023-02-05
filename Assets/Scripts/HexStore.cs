@@ -18,8 +18,11 @@ public class HexStore : MonoBehaviour
     
     public bool showTest = false;
 
+    public PlantResources? purchasedPlant;
+
     void Awake()
     {
+        hexes = this;
         materials = new Dictionary<(PlayerCharacter, PlantResources), Material>();
         Array characterValues = Enum.GetValues(typeof(PlayerCharacter));
         foreach( PlayerCharacter cv in characterValues )
@@ -87,7 +90,58 @@ public class HexStore : MonoBehaviour
         }
     }
 
-    // bool checkValidPlaceable(string PlantName, ) {
+    public bool CanPlacePlant(HexCoord hexCoord)
+    {
+        if(purchasedPlant != null){
+            GameObject hexObject = hexDictionary[(hexCoord.q, hexCoord.r)];
+            HexTile hexTile = hexObject.GetComponent<HexTile>();
+            if(!hexTile){
+                Debug.Log("no hextile");
+                return false;
+            }
+            switch(purchasedPlant){
+                case PlantResources.grass:
+                case PlantResources.weeds:
+                    return !hexTile.HasPlant();
+                case PlantResources.flowers:
+                case PlantResources.tumbleweeds:
+                case PlantResources.carrots:
+                case PlantResources.venus:
+                    return hexTile.owner == turnManager.activePlayer.PlayerCharacter && hexTile.HasGrass();
+                default: return false;
+            }
+        }
+        return false;
+    }
 
-    // }
+    public void PlacePlant(HexCoord hexCoord)
+    {
+        GameObject hexObject = hexDictionary[(hexCoord.q, hexCoord.r)];
+        //HexTile hexTile = hexObject.GetComponent<HexTile>();
+        if(purchasedPlant == null) { return; }
+        switch(purchasedPlant) {
+            case PlantResources.grass:
+                hexObject.AddComponent<Grass>().Sprout();
+                break;
+            case PlantResources.weeds:
+                hexObject.AddComponent<Grass>().Sprout();
+                hexObject.AddComponent<Weed>().Sprout();
+                break;
+            case PlantResources.flowers:
+                hexObject.AddComponent<Flower>().Sprout();
+                break;
+            case PlantResources.carrots:
+                hexObject.AddComponent<Carrot>().Sprout();
+                break;
+            case PlantResources.venus:
+                hexObject.AddComponent<VenusFlyTrap>().Sprout();
+                break;
+            case PlantResources.tumbleweeds:
+                hexObject.AddComponent<Tumbleweed>().Sprout();
+                break;
+            default:
+                Debug.Log("invalid plant place");
+                break;
+        }
+    }
 }

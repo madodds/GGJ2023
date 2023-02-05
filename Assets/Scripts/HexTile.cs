@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Globals;
 
 public class HexTile : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class HexTile : MonoBehaviour
     public GameObject tilePrefab;       //  case we need to instantiate these
     public GameObject billboard; // "3D" representation of plant
     public GameObject tile; // Hexagonal base tile
+
+    public PlayerCharacter? owner;
 
     // Start is called before the first frame update
     void Start()
@@ -34,5 +37,24 @@ public class HexTile : MonoBehaviour
         if(bbRenderer){
             bbRenderer.material = billboardMaterial;
         }
+    }
+
+    public bool HasGrass()
+    {
+        if(GetComponent<Grass>()){ return true; }
+        return false;
+    }
+
+    public bool HasPlant()
+    {
+        if(
+            GetComponent<Weed>() ||
+            GetComponent<Flower>() ||
+            GetComponent<Tumbleweed>() ||
+            GetComponent<VenusFlyTrap>() ||
+            GetComponent<Tree>() ||
+            GetComponent<Carrot>()
+        ){ return true; }
+        return false;
     }
 }
