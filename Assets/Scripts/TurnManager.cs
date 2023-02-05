@@ -8,16 +8,6 @@ using static Globals;
 
 public class TurnManager : MonoBehaviour
 {
-    public enum TurnPhases
-    {
-        BetweenPhases,
-        StartTurn,
-        GainResources,
-        ResolvePlants,
-        ResolveRabbits,
-        CheckEndGame,
-        SpendResources
-    }
 
     public TurnPhases turnPhase = TurnPhases.BetweenPhases;
     public PlayerObject CurrentCharacter => activePlayer;
@@ -25,7 +15,7 @@ public class TurnManager : MonoBehaviour
 
     public TextMeshProUGUI player1Mana;
     public TextMeshProUGUI player2Mana;
-    private PlayerObject activePlayer;
+    public PlayerObject activePlayer;
 
     public PlayerObject player1;
     public PlayerObject player2;
@@ -53,6 +43,8 @@ public class TurnManager : MonoBehaviour
             player2.PlayerName = "Player 2";
             player2.PlayerCharacter = PlayerCharacter.PumpkinKing;
         }
+
+        turnManager = this;
 
         activePlayer = player1;
         GoToPhase("doStartTurn");
@@ -82,12 +74,7 @@ public class TurnManager : MonoBehaviour
             case TurnPhases.SpendResources:
                 // Activate purchasing UI then
                 // Await clicking end turn
-                if (Input.GetMouseButtonDown(0)){
-                    Debug.Log(activePlayer.PlayerName + " spends 1 resource.");
-                    activePlayer.TakeMoney(1);
-                    Debug.Log(activePlayer.PlayerName + " has " + activePlayer.Money + " resources.");
-                    EndTurn();
-                }
+                // EndTurn();
                 break;
             default:
                 break;
@@ -133,6 +120,7 @@ public class TurnManager : MonoBehaviour
     {
         Debug.Log("Spend Resources");
         turnPhase = TurnPhases.SpendResources;
+        RefreshUI();
     }
 
     void doStartTurn()

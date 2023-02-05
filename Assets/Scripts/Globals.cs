@@ -52,6 +52,17 @@ public class Globals : MonoBehaviour
         portrait
     }
 
+    public enum TurnPhases
+    {
+        BetweenPhases,
+        StartTurn,
+        GainResources,
+        ResolvePlants,
+        ResolveRabbits,
+        CheckEndGame,
+        SpendResources
+    }
+
     public static IReadOnlyDictionary<PlantResources, int> ResourceCosts = new Dictionary<PlantResources, int>
     {
         {PlantResources.grass, 1 },
@@ -61,6 +72,9 @@ public class Globals : MonoBehaviour
         {PlantResources.flowers, 5 },
         {PlantResources.carrots, 6 }
     };
+
+    public static HexStore hexes;
+    public static TurnManager turnManager;
     
 //     var axial_direction_vectors = [
 //     Hex(+1, 0), Hex(+1, -1), Hex(0, -1), 

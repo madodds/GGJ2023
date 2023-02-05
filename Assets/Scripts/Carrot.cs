@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grass : MonoBehaviour
+public class Carrot : MonoBehaviour
 {
-    public PlayerObject owner;
-    public Material groundMaterial;
     // Start is called before the first frame update
     void Start()
     {

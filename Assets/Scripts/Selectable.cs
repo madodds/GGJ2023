@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+using static Globals;
 
 public class Selectable : MonoBehaviour
 {
@@ -9,14 +12,11 @@ public class Selectable : MonoBehaviour
     Color defaultColor;
 
     MeshRenderer myRenderer;
-
-    PlantNode plantNode;
-
     AudioSource audioSource;
 
     void Awake()
     {
-        plantNode = GetComponent<PlantNode>();
+
     }
 
     // Start is called before the first frame update
@@ -29,10 +29,16 @@ public class Selectable : MonoBehaviour
 
     void OnMouseOver()
     {
-        if(IsValid()){
-            myRenderer.material.color = validHighlightColor;
-        } else {
-            myRenderer.material.color = invalidHighlightColor;
+        HexTile hexTile = GetComponentInParent<HexTile>();
+        HexCoord hexCoord = GetComponentInParent<HexCoord>();
+        if(hexTile && hexCoord) {
+            if( hexes.purchasedPlant != null ){
+                if(hexes.CanPlacePlant(hexCoord)){
+                    myRenderer.material.color = validHighlightColor;
+                } else {
+                    myRenderer.material.color = invalidHighlightColor;
+                }
+            } 
         }
     }
 
@@ -43,16 +49,23 @@ public class Selectable : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log("You clicked", this);
-        if(plantNode){
-            Debug.Log("Has PlantNode");
+        HexTile hexTile = GetComponentInParent<HexTile>();
+        HexCoord hexCoord = GetComponentInParent<HexCoord>();
+        if(hexTile && hexCoord) {
+            if( hexes.purchasedPlant != null ){
+                // Attempt to place plant in this tile
+                if(hexes.CanPlacePlant(hexCoord)){
+                    Debug.Log("Placing " + Enum.GetName(typeof(PlantResources), hexes.purchasedPlant));
+                    hexes.PlacePlant(hexCoord);
+                    hexes.purchasedPlant = null;
+                }
+                else {
+                    Debug.Log("Invalid location for " + Enum.GetName(typeof(PlantResources), hexes.purchasedPlant));
+                }
+            }
         }
         if(audioSource){
             audioSource.Play();
         }
-    }
-
-    bool IsValid(){
-        return true;
     }
 }
