@@ -14,7 +14,7 @@ public class HexStore : MonoBehaviour
     //public GameObject originalhexObject;
     public int qLength = 9;
     public int rLength = 5;
-    public int hexSize = 1;
+    public float hexSize = 1.5f;
     
     public bool showTest = false;
 
@@ -86,4 +86,8 @@ public class HexStore : MonoBehaviour
             }
         }
     }
+
+    // bool checkValidPlaceable(string PlantName, ) {
+
+    // }
 }
