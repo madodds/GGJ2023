@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public string MainGameSceneName = "MainGame";
+    public string NextGameSceneName = "CharSelect";
     public string HowToPlaySceneName = "HowToPlay";
 
     public void PlayGame()
     {
-        SceneManager.LoadScene(MainGameSceneName);
+        SceneManager.LoadScene(NextGameSceneName);
     }
 
     public void HowToPlay()

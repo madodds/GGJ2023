@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22fda3cc6fedd284ab4bd8a0d7eaafb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainGameSceneName: MainGame
+  NextGameSceneName: CharSelect
   HowToPlaySceneName: HowToPlay
 --- !u!1 &363959678
 GameObject:
