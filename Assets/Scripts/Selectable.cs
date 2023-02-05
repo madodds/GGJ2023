@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Selectable : MonoBehaviour
+public class Selectable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Color validHighlightColor = Color.green;
     public Color invalidHighlightColor = Color.red;
@@ -34,6 +35,16 @@ public class Selectable : MonoBehaviour
         } else {
             renderer.material.color = invalidHighlightColor;
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        TooltipSystem.Show();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        TooltipSystem.Hide();
     }
 
     void OnMouseExit()
