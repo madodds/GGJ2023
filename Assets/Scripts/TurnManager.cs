@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+using UnityEngine.UI;
 using static Globals;
 
 public class TurnManager : MonoBehaviour
@@ -16,6 +16,9 @@ public class TurnManager : MonoBehaviour
     public TextMeshProUGUI player1Mana;
     public TextMeshProUGUI player2Mana;
     public PlayerObject activePlayer;
+
+    public Button statusButton;
+    public TextMeshProUGUI statusText;
 
     public PlayerObject player1;
     public PlayerObject player2;
@@ -103,6 +106,7 @@ public class TurnManager : MonoBehaviour
     void doResolvePlants()
     {
         Debug.Log("Resolving Plants");
+        SetStatusButton("Resolving Plants...", false);
         turnPhase = TurnPhases.ResolvePlants;
         foreach(KeyValuePair<(int, int), GameObject> kvp in hexes.hexDictionary){
             GameObject hexObject = kvp.Value;
@@ -124,12 +128,14 @@ public class TurnManager : MonoBehaviour
     void doResolveRabbits()
     {
         Debug.Log("Resolving Rabbits");
+        SetStatusButton("Resolving Rabbits...", false);
         turnPhase = TurnPhases.ResolveRabbits;
     }
 
     void doCheckEndGame()
     {
         Debug.Log("Check for end of game");
+        SetStatusButton("Resolving Turn...", false);
         turnPhase = TurnPhases.CheckEndGame;
     }
 
@@ -137,20 +143,23 @@ public class TurnManager : MonoBehaviour
     {
         Debug.Log("Spend Resources");
         turnPhase = TurnPhases.SpendResources;
+        SetStatusButton($"Waiting for {activePlayer.PlayerName}", true);
         RefreshUI();
     }
 
     void doStartTurn()
     {
         RefreshUI();
+        SetStatusButton("Starting Turn...", false);
         Debug.Log("Starting Turn for " + activePlayer.PlayerName);
         turnPhase = TurnPhases.StartTurn;
     }
 
-    void EndTurn() {
+    public void EndTurn() {
         // Maybe bug? who knows.
         // activePlayer = activePlayer == player1 ? player2 : player1;
-        if(activePlayer.PlayerCharacter==player1.PlayerCharacter){
+        SetStatusButton("Ending Turn...", false);
+        if (activePlayer.PlayerCharacter==player1.PlayerCharacter){
             activePlayer = player2;
         }
         else {
@@ -164,6 +173,12 @@ public class TurnManager : MonoBehaviour
         resourceButtonManager.RefreshButtonTextures();
         player1Mana.text = player1.Money.ToString();
         player2Mana.text = player2.Money.ToString();
+    }
+
+    private void SetStatusButton(string status, bool buttonEnabled)
+    {
+        statusText.text = status;
+        statusButton.interactable = buttonEnabled;
     }
 
 }
