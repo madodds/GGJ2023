@@ -17,6 +17,8 @@ public class TurnManager : MonoBehaviour
     }
 
     public TurnPhases turnPhase = TurnPhases.BetweenPhases;
+    public PlayerObject CurrentCharacter => activePlayer;
+    public ResourceButtonManager resourceButtonManager;
     private PlayerObject activePlayer;
 
     public int secondsDelayBetweenPhases = 5;
@@ -106,6 +108,7 @@ public class TurnManager : MonoBehaviour
 
     void doStartTurn()
     {
+        resourceButtonManager.RefreshButtonTextures();
         Debug.Log("Starting Turn for " + activePlayer.PlayerName);
         turnPhase = TurnPhases.StartTurn;
     }

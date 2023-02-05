@@ -47,6 +47,7 @@ public class CharacterSelect : MonoBehaviour
             }
             else
             {
+                loadNextScene = false;
                 SceneManager.LoadScene(nextSceneName);
             }
         }
