@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4122808, g: 0.39235365, b: 0.44474733, a: 1}
+  m_IndirectSpecularColor: {r: 0.4122758, g: 0.3923605, b: 0.44476652, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079de4ca459e77f41b31fc5ee71b34ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  content: 'Tumbleweed (Cost: 2, Health: 1)'
+  content: 'NOT IMPLEMENTED Tumbleweed (Cost: 2, Health: 1)'
   header: At the start of your turn, Tumbleweed grows to maturity.  If it's already
     mature, it dies and deals 2 damage to all non-tree enemies in front of it on
     the same row.  Tumbleweeds are vulnerable while they grow.  Careful!  Tumbleweeds
@@ -2366,7 +2366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079de4ca459e77f41b31fc5ee71b34ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  content: 'Carrots (Cost:4, Health: 3)'
+  content: 'NOT IMPLEMENTED Carrots (Cost:4, Health: 3)'
   header: Carrots spawn a Rabbit at the start of each turn, unless the Rabbit they
     created is still alive. Rabbits move 1 space toward the nearest enemy plant and,
     if adjacent, deal 1 damage to it.
@@ -2522,7 +2522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079de4ca459e77f41b31fc5ee71b34ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  content: 'Flowers (Cost: 3, Health: 1)'
+  content: 'NOT IMPLEMENTED Flowers (Cost: 3, Health: 1)'
   header: Flowers are very vulnernable, but give you 1 more Seeds at the start of
     your turn!  You may only have 2 Flowers in play at any time.
   validHighlightColor: {r: 0, g: 1, b: 0, a: 1}
