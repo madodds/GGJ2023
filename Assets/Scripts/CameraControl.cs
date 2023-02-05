@@ -12,8 +12,11 @@ public class CameraControl : MonoBehaviour
     public float minZ = -30.0f;
     public float maxX = 30.0f;
     public float minX = -30.0f;
+    public float initalZoomSpeed = 0.0025f;
 
     Camera myCamera;
+    private bool startZoomIn;
+    private float targetZoom;
 
     void Awake()
     {
@@ -23,12 +26,22 @@ public class CameraControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        targetZoom = myCamera.fieldOfView;
+        myCamera.fieldOfView = 179f;
+        startZoomIn = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (startZoomIn)
+        {
+            myCamera.fieldOfView = Mathf.Max(myCamera.fieldOfView - (initalZoomSpeed * myCamera.fieldOfView + zoomSpeed), targetZoom);
+            if (myCamera.fieldOfView <= targetZoom)
+            {
+                startZoomIn = false;
+            }
+        }
         if(Input.GetAxis("Horizontal") != 0.0f){
             transform.position += Vector3.right * panSpeed * Input.GetAxis("Horizontal") * Time.deltaTime;
             if(transform.position.x < minX){

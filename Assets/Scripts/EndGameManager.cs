@@ -9,6 +9,7 @@ using static Globals;
 public class EndGameManager : MonoBehaviour
 {
     public RawImage background;
+    public RawImage winnerImage;
     public TextMeshProUGUI announcementText;
     public string menuSceneName = "MainMenu";
 
@@ -21,6 +22,7 @@ public class EndGameManager : MonoBehaviour
         {
             announcementTextString = $"{winner.name} won the game!!!";
             background.texture = LookupTextureAsset(winner.PlayerCharacter, MiscResources.background);
+            winnerImage.texture = LookupTextureAsset(winner.PlayerCharacter, MiscResources.portraitFull);
         }
         announcementText.text = announcementTextString;
     }
