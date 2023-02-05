@@ -38,6 +38,7 @@ public class Globals : MonoBehaviour
         venus,
         flowers,
         carrots,
+        tree
     }
 
     public enum PlayerCharacter

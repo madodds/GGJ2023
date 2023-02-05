@@ -81,6 +81,12 @@ public class VenusFlyTrap : MonoBehaviour
                             if(damageable){
                                 damageable.TakeDamage(1);
                             }
+                            else{
+                                Grass grass = otherHexObj.GetComponent<Grass>();
+                                if(grass){
+                                    grass.Kill();
+                                }
+                            }
                         }   
                     }
                 }

@@ -21,6 +21,10 @@ public class HexStore : MonoBehaviour
 
     public PlantResources? purchasedPlant;
 
+    public (int, int) p1Start = (0,2);
+
+    public (int, int) p2Start = (8,2);
+
     void Awake()
     {
         hexes = this;
@@ -82,12 +86,26 @@ public class HexStore : MonoBehaviour
                     }
                 }
 
+                
+
                 HexCoord hexCoord = hexObject.GetComponent<HexCoord>();
                 hexCoord.storeObj = gameObject;
                 hexCoord.q = i;
                 hexCoord.r = j;
                 //hexCoord.PositionToHexCoords();
                 hexDictionary.Add((hexCoord.q,hexCoord.r), hexObject);
+
+                // Initialize starting plants
+                if((i,j) == p1Start){
+                    hexTile.owner = turnManager.player1.PlayerCharacter;
+                    hexObject.AddComponent<Grass>().Sprout();
+                    hexObject.AddComponent<Tree>().Sprout();
+                }
+                if((i, j) == p2Start){
+                    hexTile.owner = turnManager.player2.PlayerCharacter;
+                    hexObject.AddComponent<Grass>().Sprout();
+                    hexObject.AddComponent<Tree>().Sprout();
+                }
             }
         }
     }
