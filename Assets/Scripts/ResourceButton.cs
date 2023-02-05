@@ -3,17 +3,35 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using static Globals;
 
 public class ResourceButton : MonoBehaviour
 {
     public PlantResources plantType;
     public TextMeshProUGUI costText;
+    public RawImage tileImage;
+    public Button tileButton;
 
-    private int cost;
+    private int cost
+    {
+        get => ResourceCosts[plantType];
+    }
+
     private void Start()
     {
-        cost = ResourceCosts[plantType];
         costText.text = cost.ToString();
     }
+
+    public void SetCharacterTextures(PlayerObject character)
+    { 
+        tileButton.interactable = cost < character.Money;
+        tileImage.texture = GetPlayerPlantResources(character.PlayerCharacter, plantType);
+        //tileButton.image = tileImage;
+    }
+    
+    public static Texture GetPlayerPlantResources(PlayerCharacter playerCharacter, PlantResources plantResource) => 
+        Resources.Load<Texture>(
+            $"Art/PlayerTypes/{Enum.GetName(typeof(PlayerCharacter), playerCharacter)}/{Enum.GetName(typeof(PlantResources), plantResource)}"
+        );
 }
