@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 using static Globals;
 
@@ -50,6 +51,12 @@ public class Tree : MonoBehaviour
     {
         HexTile hexTile = GetComponent<HexTile>();
         if(hexTile != null){
+            if(hexTile.owner==turnManager.player1.PlayerCharacter){
+                CharacterSelect.player2.WonTheGame = true;
+            } else if(hexTile.owner==turnManager.player2.PlayerCharacter){
+                CharacterSelect.player1.WonTheGame = true;
+            }
+            SceneManager.LoadScene("EndGame");
             hexTile.RemoveBillboard();
             Grass grass = GetComponent<Grass>();
             if(grass){
