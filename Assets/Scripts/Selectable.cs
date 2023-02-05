@@ -8,7 +8,7 @@ public class Selectable : MonoBehaviour
     public Color invalidHighlightColor = Color.red;
     Color defaultColor;
 
-    MeshRenderer renderer;
+    MeshRenderer myRenderer;
 
     PlantNode plantNode;
 
@@ -22,23 +22,23 @@ public class Selectable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        renderer = GetComponent<MeshRenderer>();
-        defaultColor = renderer.material.color;
+        myRenderer = GetComponent<MeshRenderer>();
+        defaultColor = myRenderer.material.color;
         audioSource = GetComponent<AudioSource>();
     }
 
     void OnMouseOver()
     {
         if(IsValid()){
-            renderer.material.color = validHighlightColor;
+            myRenderer.material.color = validHighlightColor;
         } else {
-            renderer.material.color = invalidHighlightColor;
+            myRenderer.material.color = invalidHighlightColor;
         }
     }
 
     void OnMouseExit()
     {
-        renderer.material.color = defaultColor;
+        myRenderer.material.color = defaultColor;
     }
 
     void OnMouseDown()

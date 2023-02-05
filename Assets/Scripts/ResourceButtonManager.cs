@@ -4,26 +4,19 @@ using UnityEngine;
 
 public class ResourceButtonManager : MonoBehaviour
 {
-
+    public TurnManager turnManager;
     public List<ResourceButton> resourceButtons;
     // Start is called before the first frame update
     void Start()
     {
-
-        var character = new PlayerObject()
-        {
-            PlayerCharacter = Globals.PlayerCharacter.PumpkinKing
-        };
-        character.AddMoney(4);
-        foreach (var button in resourceButtons)
-        {
-            button.SetCharacterTextures(character);
-        }
+        RefreshButtonTextures();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void RefreshButtonTextures()
     {
-        
+        foreach (var button in resourceButtons)
+        {
+            button.SetCharacterTextures(turnManager.CurrentCharacter);
+        }
     }
 }
