@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 using static Globals;
@@ -21,6 +22,9 @@ public class TurnManager : MonoBehaviour
     public TurnPhases turnPhase = TurnPhases.BetweenPhases;
     public PlayerObject CurrentCharacter => activePlayer;
     public ResourceButtonManager resourceButtonManager;
+
+    public TextMeshProUGUI player1Mana;
+    public TextMeshProUGUI player2Mana;
     private PlayerObject activePlayer;
 
     public PlayerObject player1;
@@ -103,7 +107,7 @@ public class TurnManager : MonoBehaviour
         Debug.Log(activePlayer.PlayerName + " gains " + addedResources + " resources.");
         activePlayer.AddMoney(addedResources);
         Debug.Log(activePlayer.PlayerName + " has " + activePlayer.Money + " resources.");
-        resourceButtonManager.RefreshButtonTextures();
+        RefreshUI();
         turnPhase = TurnPhases.GainResources;
     }
 
@@ -133,7 +137,7 @@ public class TurnManager : MonoBehaviour
 
     void doStartTurn()
     {
-        resourceButtonManager.RefreshButtonTextures();
+        RefreshUI();
         Debug.Log("Starting Turn for " + activePlayer.PlayerName);
         turnPhase = TurnPhases.StartTurn;
     }
@@ -148,6 +152,13 @@ public class TurnManager : MonoBehaviour
             activePlayer = player1;
         }
         GoToPhase("doStartTurn");
+    }
+
+    void RefreshUI()
+    {
+        resourceButtonManager.RefreshButtonTextures();
+        player1Mana.text = player1.Money.ToString();
+        player2Mana.text = player2.Money.ToString();
     }
 
 }
