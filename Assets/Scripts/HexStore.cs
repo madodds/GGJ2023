@@ -52,6 +52,7 @@ public class HexStore : MonoBehaviour
         // Delete this when testing is over
         // <---
             Array characterValues = Enum.GetValues(typeof(PlayerCharacter));
+            //Debug.Log("characterValues " + characterValues);
             Array plantValues = Enum.GetValues(typeof(PlantResources));
         // --->
         for(int i = 0; i < qLength; i++){
@@ -68,12 +69,12 @@ public class HexStore : MonoBehaviour
 
                 if(i < plantValues.Length && j < characterValues.Length)
                 {
-                    // Material billboardMaterial = materials[(characterValues[j], plantValues[i])];
-                    // if(!billboardMaterial){
-                    //     Debug.Log("Couldn't find material for "+ Enum.GetName(typeof(PlayerCharacter), characterValues[j]) + " " + Enum.GetName(typeof(PlantResources), plantValues[i]));
-                    // } else{
-                    //     hexTile.SetBillboard(billboardMaterial);
-                    // }
+                    Material billboardMaterial = materials[((PlayerCharacter)j, (PlantResources)i)];
+                    if(!billboardMaterial){
+                        //Debug.Log("Couldn't find material for "+ Enum.GetName(typeof(PlayerCharacter), characterValues.GetValue(j)) + " " + Enum.GetName(typeof(PlantResources), plantValues.GetValue(i)));
+                    } else{
+                        hexTile.SetBillboard(billboardMaterial);
+                    }
                 }
 
                 HexCoord hexCoord = hexObject.GetComponent<HexCoord>();
