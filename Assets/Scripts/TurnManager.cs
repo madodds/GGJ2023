@@ -103,6 +103,7 @@ public class TurnManager : MonoBehaviour
         Debug.Log(activePlayer.PlayerName + " gains " + addedResources + " resources.");
         activePlayer.AddMoney(addedResources);
         Debug.Log(activePlayer.PlayerName + " has " + activePlayer.Money + " resources.");
+        resourceButtonManager.RefreshButtonTextures();
         turnPhase = TurnPhases.GainResources;
     }
 
