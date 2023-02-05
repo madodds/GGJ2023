@@ -11,7 +11,23 @@ public class Tooltip : MonoBehaviour
     public TextMeshProUGUI contentField;
     public LayoutElement layoutElement;
     public int characterWrapLimit;
+    public void SetText(string content, string header = "")
+    {
+        if (string.IsNullOrEmpty(header))
+        {
+            headerField.gameObject.SetActive(false);
+        }
+        else
+        {
+            headerField.gameObject.SetActive(true);
+            headerField.text = header;
+        }
 
+        contentField.text = content;
+
+
+
+    }
     private void Update()
     {
         int headerLength = headerField.text.Length;

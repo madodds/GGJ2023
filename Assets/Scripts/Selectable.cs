@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class Selectable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public string content;
+    public string header;
     public Color validHighlightColor = Color.green;
     public Color invalidHighlightColor = Color.red;
     Color defaultColor;
@@ -39,7 +41,7 @@ public class Selectable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        TooltipSystem.Show();
+        TooltipSystem.Show(header, content);
     }
 
     public void OnPointerExit(PointerEventData eventData)
