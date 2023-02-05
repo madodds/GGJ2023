@@ -20,7 +20,7 @@ public class EndGameManager : MonoBehaviour
         string announcementTextString = "Game Over, baby.";
         if (winner != null)
         {
-            announcementTextString = $"{winner.name} won the game!!!";
+            announcementTextString = $"{winner.PlayerName} won the game!!!";
             background.texture = LookupTextureAsset(winner.PlayerCharacter, MiscResources.background);
             winnerImage.texture = LookupTextureAsset(winner.PlayerCharacter, MiscResources.portraitFull);
         }
