@@ -12,6 +12,8 @@ public class Selectable : MonoBehaviour
 
     PlantNode plantNode;
 
+    AudioSource audioSource;
+
     void Awake()
     {
         plantNode = GetComponent<PlantNode>();
@@ -22,6 +24,7 @@ public class Selectable : MonoBehaviour
     {
         renderer = GetComponent<MeshRenderer>();
         defaultColor = renderer.material.color;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnMouseOver()
@@ -43,6 +46,9 @@ public class Selectable : MonoBehaviour
         Debug.Log("You clicked", this);
         if(plantNode){
             Debug.Log("Has PlantNode");
+        }
+        if(audioSource){
+            audioSource.Play();
         }
     }
 
