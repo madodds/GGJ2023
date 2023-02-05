@@ -17,14 +17,14 @@ public class TurnManager : MonoBehaviour
     }
 
     public TurnPhases turnPhase = TurnPhases.BetweenPhases;
-    public int player = 0;   // current player.
-    public int[] resources = {0, 0};
+    private PlayerObject activePlayer;
 
     public int secondsDelayBetweenPhases = 5;
 
     // Start is called before the first frame update
     void Start()
     {
+        activePlayer = CharacterSelect.player1;
         GoToPhase("doStartTurn");
     }
 
@@ -53,9 +53,9 @@ public class TurnManager : MonoBehaviour
                 // Activate purchasing UI then
                 // Await clicking end turn
                 if (Input.GetMouseButtonDown(0)){
-                    Debug.Log( GetPlayerName() + " spends 1 resource.");
-                    resources[player] -= 1;
-                    Debug.Log( GetPlayerName() + " has " + resources[player] + " resources.");
+                    Debug.Log(activePlayer.PlayerName + " spends 1 resource.");
+                    activePlayer.TakeMoney(1);
+                    Debug.Log(activePlayer.PlayerName + " has " + activePlayer.Money + " resources.");
                     EndTurn();
                 }
                 break;
@@ -74,9 +74,9 @@ public class TurnManager : MonoBehaviour
     void doGainResources()
     {
         int addedResources = 2;
-        Debug.Log( GetPlayerName() + " gains " + addedResources + " resources.");
-        resources[player] += addedResources;
-        Debug.Log( GetPlayerName() + " has " + resources[player] + " resources.");
+        Debug.Log(activePlayer.PlayerName + " gains " + addedResources + " resources.");
+        activePlayer.AddMoney(addedResources);
+        Debug.Log(activePlayer.PlayerName + " has " + activePlayer.Money + " resources.");
         turnPhase = TurnPhases.GainResources;
     }
 
@@ -106,26 +106,14 @@ public class TurnManager : MonoBehaviour
 
     void doStartTurn()
     {
-        Debug.Log("Starting Turn for " + GetPlayerName());
+        Debug.Log("Starting Turn for " + activePlayer.PlayerName);
         turnPhase = TurnPhases.StartTurn;
     }
 
     void EndTurn() {
-        if(player==0){
-            player = 1;
-        } else {
-            player = 0;
-        }
+        // Maybe bug? who knows.
+        activePlayer = activePlayer == CharacterSelect.player1 ? CharacterSelect.player2 : CharacterSelect.player1;
         GoToPhase("doStartTurn");
     }
 
-    string GetPlayerName(){
-        string playerName;
-         if(player==0){
-            playerName = "Player 1";
-        } else {
-            playerName = "Player 2";
-        }
-        return playerName;
-    }
 }
