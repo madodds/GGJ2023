@@ -524,6 +524,7 @@ MonoBehaviour:
   costText: {fileID: 1485584808}
   tileImage: {fileID: 124993399}
   tileButton: {fileID: 124993400}
+  activated: 0
 --- !u!114 &124993399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,6 +748,7 @@ MonoBehaviour:
   costText: {fileID: 777886540}
   tileImage: {fileID: 193150367}
   tileButton: {fileID: 193150368}
+  activated: 0
 --- !u!114 &193150367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -901,6 +903,7 @@ MonoBehaviour:
   costText: {fileID: 108900893}
   tileImage: {fileID: 246425301}
   tileButton: {fileID: 246425302}
+  activated: 0
 --- !u!114 &246425301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1190,6 +1193,7 @@ MonoBehaviour:
   costText: {fileID: 1343256982}
   tileImage: {fileID: 546305533}
   tileButton: {fileID: 546305534}
+  activated: 0
 --- !u!114 &546305533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2703,7 +2707,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1427624104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2917,6 +2921,7 @@ MonoBehaviour:
   costText: {fileID: 1161196318}
   tileImage: {fileID: 1464590792}
   tileButton: {fileID: 1464590793}
+  activated: 0
 --- !u!114 &1464590792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3727,6 +3732,7 @@ MonoBehaviour:
   costText: {fileID: 1857270660}
   tileImage: {fileID: 1889898884}
   tileButton: {fileID: 1889898885}
+  activated: 0
 --- !u!114 &1889898884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4167,6 +4173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e6b420b9c8b24344ac636710dfc2714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnManager: {fileID: 0}
   resourceButtons:
   - {fileID: 246425300}
   - {fileID: 1889898883}
