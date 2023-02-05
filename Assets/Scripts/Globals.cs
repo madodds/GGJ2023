@@ -61,7 +61,8 @@ public class Globals : MonoBehaviour
         ResolvePlants,
         ResolveRabbits,
         CheckEndGame,
-        SpendResources
+        SpendResources,
+        PlacePlants,
     }
 
     public static IReadOnlyDictionary<PlantResources, int> ResourceCosts = new Dictionary<PlantResources, int>

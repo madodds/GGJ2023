@@ -74,7 +74,9 @@ public class TurnManager : MonoBehaviour
             case TurnPhases.SpendResources:
                 // Activate purchasing UI then
                 // Await clicking end turn
-                // EndTurn();
+                if(Input.GetKeyDown(KeyCode.Return)){
+                    EndTurn();
+                }
                 break;
             default:
                 break;
@@ -142,7 +144,7 @@ public class TurnManager : MonoBehaviour
         GoToPhase("doStartTurn");
     }
 
-    void RefreshUI()
+    public void RefreshUI()
     {
         resourceButtonManager.RefreshButtonTextures();
         player1Mana.text = player1.Money.ToString();
