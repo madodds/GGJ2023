@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,6 +47,11 @@ public class Globals : MonoBehaviour
         PumpkinKing
     }
 
+    public enum MiscResources
+    {
+        portrait
+    }
+
     public static IReadOnlyDictionary<PlantResources, int> ResourceCosts = new Dictionary<PlantResources, int>
     {
         {PlantResources.grass, 1 },
@@ -71,4 +77,14 @@ public class Globals : MonoBehaviour
         };
         return coords;
     }
+
+    public static Texture LookupTextureAsset(PlayerCharacter playerCharacter, PlantResources plantResource) =>
+        Resources.Load<Texture>(
+            $"Art/PlayerTypes/{Enum.GetName(typeof(PlayerCharacter), playerCharacter)}/{Enum.GetName(typeof(PlantResources), plantResource)}"
+        );
+
+    public static Texture LookupTextureAsset(PlayerCharacter playerCharacter, MiscResources miscResource) =>
+        Resources.Load<Texture>(
+            $"Art/PlayerTypes/{Enum.GetName(typeof(PlayerCharacter), playerCharacter)}/{Enum.GetName(typeof(MiscResources), miscResource)}"
+        );
 }
