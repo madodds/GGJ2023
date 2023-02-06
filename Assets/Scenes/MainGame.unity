@@ -3471,7 +3471,7 @@ MonoBehaviour:
   minZ: -30
   maxX: 30
   minX: -30
-  initalZoomSpeed: 0.0025
+  initalZoomSpeed: 0.001
 --- !u!1 &1534599929
 GameObject:
   m_ObjectHideFlags: 0
